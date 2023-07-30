@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Library</title>
+    <script src="/js/jquery-3.4.0.min.js"></script>
+    <script src="/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+    <div id="job-form">
+        <form id="jobForm">
+            <h2>Добавление задания</h2>
+            <label>Номер заявки:</label>
+            <input id= "textNumber" type="text" name="number" value="">
+            <label>Название задания:</label>
+            <input id= "textName" type="text" name="name" value="">
+            <label>Заводской номер:</label>
+            <input id= "textSerialNumber" type="text" name="serial_number" value="">
+            <label>Испонитель:</label>
+            <input id= "textWorker" type="text" name="worker" value="">
+            <label>Статус:</label>
+            <input id= "textStatus" type="text" name="status" value="">
+            <label>Примечание:</label>
+            <input id= "textAnnotation" type="text" name="annotation" value="">
+            <hr>
+            <button id="save-job">Сохранить</button>
+        </form>
+    </div>
+    <h1>Список заданий (<span th:text="${jobsCount}">0</span>)</h1>
+    <button id="show-add-job-form">Добавить задание</button>
+    <br><br>
+    <div id="job-list">
+        <div th:each="job : ${jobs}">
+            <a href="#" class="job-link" th:attr="data-id=${job.number}"
+                th:text="${job.number} + ' ' + ${job.name} + ' '  + ${job.serial_number} + ' ' + ${job.status} + ' ' + ${job.annotation}">
+            </a>
+            <span text="'  '"> </span>
+            <button class= "job-edit" th:attr="data-id=${job.number}">Изменить</button>
+            <button class= "job-delete" th:attr="data-id=${job.number}">Удалить</button><br>
+        </div>
+    </div>
+    <p th:text="${someParameter}"></p>
+</body>
+</html>
